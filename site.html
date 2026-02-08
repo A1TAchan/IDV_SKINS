@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Identity V Skin Database</title>
+    <style>
+        :root {
+            --gold: #d4af37;
+            --bg: #121212;
+            --card-bg: #1e1e1e;
+            --panel-bg: #1a1a1a;
+        }
+
+        body { background-color: var(--bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 20px; }
+        h1 { text-align: center; color: var(--gold); text-transform: uppercase; }
+
+        /* Панель фильтров */
+        .filter-section {
+            background: var(--panel-bg);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            margin-bottom: 30px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .filter-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .group-title {
+            font-weight: bold;
+            color: var(--gold);
+            min-width: 150px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .tag-btn {
+            background: #252525; border: 1px solid #444; color: #ccc;
+            padding: 5px 12px; border-radius: 15px; cursor: pointer; 
+            transition: 0.2s; font-size: 0.85rem;
+        }
+
+        .tag-btn:hover { border-color: var(--gold); color: white; }
+        .tag-btn.active { background: var(--gold); color: black; border-color: white; font-weight: bold; }
+
+        .controls { text-align: center; margin-top: 10px; padding-top: 10px; border-top: 1px solid #333; }
+        .reset-btn { background: #ff4444; color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; }
+
+        /* Сетка */
+        .grid {
+    display: grid;
+    /* auto-fill создаст столько колонок по 200px, сколько влезет в экран */
+    /* Ширина каждой колонки будет строго 200px */
+    grid-template-columns: repeat(auto-fill, 200px); 
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center; /* Центрирует всю сетку на странице */
+}
+
+.skin {
+    background-color: transparent;
+    border: 2px solid #333;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    transition: 0.3s;
+    width: 200px; /* Фиксированная ширина карточки */
+    box-sizing: border-box; /* Чтобы padding не раздувал ширину */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Названия будут на одном уровне снизу */
+}
+
+        .skin.hidden { display: none; }
+        .skin img { width: 100%; border-radius: 5px; margin-bottom: 10px; background: transparent; }
+        .skin-name { font-weight: bold; display: block; margin-bottom: 5px; color: #fff; }
+        .skin-tags { font-size: 0.75rem; color: #777; display: block; line-height: 1.2; }
+    </style>
+</head>
+<body>
+
+<h1>Архив Костюмов Identity V</h1>
+
+<div class="filter-section">
+    <div class="filter-group">
+        <div class="group-title">Получение:</div>
+        <button class="tag-btn" data-tag="essence">Сфера</button>
+        <button class="tag-btn" data-tag="event">Ивент</button>
+        <button class="tag-btn" data-tag="labyrinth">Лабиринт</button>
+        <button class="tag-btn" data-tag="shop-echo">Магазин (донат)</button>
+        <button class="tag-btn" data-tag="shop-frag">Магазин (фрагменты)</button>
+        <button class="tag-btn" data-tag="logic-path">Дорожка</button>
+        <button class="tag-btn" data-tag="offline">Внеигровое</button>
+    </div>
+
+    <div class="filter-group">
+        <div class="group-title">Событие:</div>
+        <button class="tag-btn" data-tag="christmas">Рождество</button>
+        <button class="tag-btn" data-tag="coa">Зов Бездны</button>
+        <button class="tag-btn" data-tag="valentine">День Св. Валентина</button>
+        <button class="tag-btn" data-tag="anniversary">Годовщина</button>
+        <button class="tag-btn" data-tag="summer">Лето</button>
+        <button class="tag-btn" data-tag="truth-inference">Правда и Вывод</button>
+    </div>
+
+    <div class="filter-group">
+        <div class="group-title">Доступность:</div>
+        <button class="tag-btn" data-tag="limited">Лимитный</button>
+        <button class="tag-btn" data-tag="time-limited">Временно-лимитный</button>
+        <button class="tag-btn" data-tag="permanent">Всегда доступен</button>
+    </div>
+
+    <div class="filter-group">
+        <div class="group-title">Серия:</div>
+        <button class="tag-btn" data-tag="deduction">Нимфа/Звезды дедукции</button>
+        <button class="tag-btn" data-tag="ivory-tower">Башня из слоновой кости</button>
+        <button class="tag-btn" data-tag="retrospective">Ретроспектива ONCE</button>
+        <button class="tag-btn" data-tag="charity">Благотворительный</button>
+        <button class="tag-btn" data-tag="cosplay">Косплей</button>
+        <button class="tag-btn" data-tag="crossover">Кроссовер</button>
+    </div>
+
+    <div class="filter-group">
+        <div class="group-title">Цвета:</div>
+        <button class="tag-btn" data-tag="gold">Золотой</button>
+        <button class="tag-btn" data-tag="red">Красный</button>
+        <button class="tag-btn" data-tag="orange">Оранжевый</button>
+        <button class="tag-btn" data-tag="yellow">Жёлтый</button>
+        <button class="tag-btn" data-tag="green">Зелёный</button>
+        <button class="tag-btn" data-tag="lightblue">Голубой</button>
+        <button class="tag-btn" data-tag="blue">Синий</button>
+        <button class="tag-btn" data-tag="Violet">Фиолетовый</button>
+        <button class="tag-btn" data-tag="black">Черный</button>
+        <button class="tag-btn" data-tag="white">Белый</button>
+        <button class="tag-btn" data-tag="brown">Коричневый</button>
+        <button class="tag-btn" data-tag="grey">Серый</button>
+        <button class="tag-btn" data-tag="pink">Розовый</button>
+        <button class="tag-btn" data-tag="bege">Бежевый</button>
+        <button class="tag-btn" data-tag="turquoise">Бирюзовый</button>
+    </div>
+
+    <div class="filter-group">
+        <div class="group-title">Тематика:</div>
+        <button class="tag-btn" data-tag="space">Космос</button>
+        <button class="tag-btn" data-tag="nature">Природа</button>
+        <button class="tag-btn" data-tag="steampunk">Стимпанк</button>
+        <button class="tag-btn" data-tag="gothic">Готика</button>
+        <button class="tag-btn" data-tag="chinese">Китайская тема</button>
+        <button class="tag-btn" data-tag="fantasy">Фэнтези</button>
+        <button class="tag-btn" data-tag="home">Домашние наряды</button>
+        <button class="tag-btn" data-tag="animal">Антропоморфные</button>
+
+        <button class="tag-btn" data-tag="greece">Греческая тема</button>
+        <button class="tag-btn" data-tag="east">Восточная тема</button>
+        <button class="tag-btn" data-tag="slavyan">Славянская тема</button>
+        <button class="tag-btn" data-tag="egypt">Египетская тема</button>
+        <button class="tag-btn" data-tag="mediaeval">Средневековая тема</button>
+    </div>
+
+<div class="filter-group">
+        <div class="group-title">Редкость:</div>
+        <button class="tag-btn" data-tag="SS-tier">SS-качество</button>
+        <button class="tag-btn" data-tag="S-tier">S-качество</button>
+        <button class="tag-btn" data-tag="A-tier">A-качество</button>
+        <button class="tag-btn" data-tag="B-tier">B-качество</button>
+        <button class="tag-btn" data-tag="C-tier">C-качество</button>
+    </div>
+
+    <div class="controls">
+        <button class="reset-btn" onclick="resetFilters()">Сбросить фильтры</button>
+    </div>
+</div>
+
+<div class="skin" data-tags="shop-frag anniversary time-limited white S-tier">
+    <img src="https://static.wikia.nocookie.net/id5/images/f/f8/LadyBella.png/revision/latest?cb=20230522182202" alt="Леди Белла">
+    <span class="skin-name">Леди Белла</span>
+    <span class="skin-tags">Магазин (фрагменты), Годовщина, Временно-лимитный, Белый, S-качество</span>
+</div>
+
+<script>
+    const buttons = document.querySelectorAll('.tag-btn');
+    const skins = document.querySelectorAll('.skin');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            button.classList.toggle('active');
+            filterSkins();
+        });
+    });
+
+    function filterSkins() {
+        const activeTags = Array.from(document.querySelectorAll('.tag-btn.active'))
+                                .map(btn => btn.getAttribute('data-tag'));
+
+        skins.forEach(skin => {
+            const skinTags = skin.getAttribute('data-tags').split(' ');
+            const isMatch = activeTags.every(tag => skinTags.includes(tag));
+
+            if (activeTags.length === 0 || isMatch) {
+                skin.classList.remove('hidden');
+            } else {
+                skin.classList.add('hidden');
+            }
+        });
+    }
+
+    function resetFilters() {
+        buttons.forEach(btn => btn.classList.remove('active'));
+        skins.forEach(skin => skin.classList.remove('hidden'));
+    }
+</script>
+
+</body>
+</html>
