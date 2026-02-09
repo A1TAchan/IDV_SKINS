@@ -81,7 +81,20 @@
 }
 
         .skin.hidden { display: none; }
-        .skin img { width: 100%; border-radius: 5px; margin-bottom: 10px; background: transparent; }
+        ```css
+/* Цвета рамок для редкости */
+.rarity-ss { border: 2px solid #ff4de4 !important; box-shadow: 0 0 10px #ff4de466; } /* SS - Розовый/Бриллиант */
+.rarity-s  { border: 2px solid #ffcc00 !important; box-shadow: 0 0 10px #ffcc0066; } /* S - Золотой */
+.rarity-a  { border: 2px solid #a335ee !important; box-shadow: 0 0 10px #a335ee66; } /* A - Фиолетовый */
+.rarity-b  { border: 2px solid #0070dd !important; box-shadow: 0 0 10px #0070dd66; } /* B - Синий */
+.rarity-c  { border: 2px solid #9d9d9d !important; } /* C - Серый */
+
+/* Чтобы картинки были прозрачными и не ломали высоту */
+.skin img {
+    height: 180px; 
+    object-fit: contain; 
+    background: transparent;
+}
         .skin-name { font-weight: bold; display: block; margin-bottom: 5px; color: #fff; }
         .skin-tags { font-size: 0.75rem; color: #777; display: block; line-height: 1.2; }
     </style>
@@ -164,6 +177,7 @@
         <button class="tag-btn" data-tag="slavyan">Славянская тема</button>
         <button class="tag-btn" data-tag="egypt">Египетская тема</button>
         <button class="tag-btn" data-tag="mediaeval">Средневековая тема</button>
+        <button class="tag-btn" data-tag="religion">Религиозная тема</button>
     </div>
 
 <div class="filter-group">
@@ -178,12 +192,67 @@
     <div class="controls">
         <button class="reset-btn" onclick="resetFilters()">Сбросить фильтры</button>
     </div>
-</div>
+</div> 
 
-<div class="skin" data-tags="shop-frag anniversary time-limited white S-tier">
-    <img src="https://static.wikia.nocookie.net/id5/images/f/f8/LadyBella.png/revision/latest?cb=20230522182202" alt="Леди Белла">
-    <span class="skin-name">Леди Белла</span>
-    <span class="skin-tags">Магазин (фрагменты), Годовщина, Временно-лимитный, Белый, S-качество</span>
+<div class="grid" id="skinGrid">
+
+    <div class="skin rarity-s" data-tags="essence limited gold blue S-tier">
+       <img src="https://static.wikia.nocookie.net/id5/images/2/22/Goldsmith.png/revision/latest/scale-to-width-down/150?cb=20241204021645" alt="Ювелир">
+       <span class="skin-name">Ювелир</span>
+       <span class="skin-tags">Сфера, Лимитный, Золотой, Синий, S-качество</span>
+    </div>
+
+    <div class="skin rarity-a" data-tags="essence permanent green black white brown steampunk A-tier">
+       <img src="https://static.wikia.nocookie.net/id5/images/d/db/SpringHand.png/revision/latest/scale-to-width-down/150?cb=20250926150646" alt="Руки Пружины">
+       <span class="skin-name">Руки Пружины</span>
+       <span class="skin-tags">Сфера, Всегда доступный, Зелёный, Черный, Белый, Коричневый, Стимпанк, A-качество</span>
+    </div>
+<div class="skin rarity-a" data-tags="essence permanent red black steampunk A-tier">
+    <img src="https://static.wikia.nocookie.net/id5/images/0/06/Punk.png" alt="Панк">
+    <span class="skin-name">Панк</span>
+    <span class="skin-tags">Сфера, Всегда доступный, Красный, Черный, Стимпанк, A-качество</span>
+</div>
+<div class="skin rarity-s" data-tags="essence permanent gold black S-tier">
+    <img src="https://static.wikia.nocookie.net/id5/images/a/ab/GoldenTentacle.png/revision/latest/scale-to-width-down/150?cb=20251019135544" alt="Золотое щупальце">
+    <span class="skin-name">Золотое щупальце</span>
+    <span class="skin-tags">Сфера, Всегда доступный, Золотой, Черный, S-качество</span>
+</div>
+<div class="skin rarity-a" data-tags="essence permanent green black A-tier">
+    <img src="https://static.wikia.nocookie.net/id5/images/e/e4/GreenTentacle.png/revision/latest/scale-to-width-down/150?cb=20251019135551" alt="Зеленое щупальце">
+    <span class="skin-name">Зеленое щупальце</span>
+    <span class="skin-tags">Сфера, Всегда доступный, Зелёный, Черный, A-качество</span>
+</div>
+<div class="skin rarity-a" data-tags="essence permanent black white A-tier">
+    <img src="https://static.wikia.nocookie.net/id5/images/3/3b/WhiteTentacle.png/revision/latest/scale-to-width-down/150?cb=20251019135557" alt="Белое щупальце">
+    <span class="skin-name">Белое щупальце</span>
+    <span class="skin-tags">Сфера, Всегда доступный, Черный, Белый, A-качество</span>
+</div>
+<div class="skin rarity-a" data-tags="logic-path limited black grey east A-tier">
+    <img src="https://static.wikia.nocookie.net/id5/images/b/bd/PlatinumAladdin.png/revision/latest/scale-to-width-down/162?cb=20241123212339" alt="Платиновый Аладдин">
+    <span class="skin-name">Платиновый Аладдин</span>
+    <span class="skin-tags">Дорожка, Лимитный, Черный, Серый, Восточная тема, A-качество</span>
+</div>
+<div class="skin rarity-s" data-tags="essence limited gold black brown mediaeval S-tier">
+    <img src="https://static.wikia.nocookie.net/id5/images/d/d0/KingsTailor.png/revision/latest/scale-to-width-down/150?cb=20210926070222" alt="Королевский портной">
+    <span class="skin-name">Королевский портной</span>
+    <span class="skin-tags">Сфера, Лимитный, Золотой, Черный, Коричневый, Средневековая тема, S-качество</span>
+</div>
+<div class="skin rarity-a" data-tags="essence permanent blue home A-tier">
+    <img src="https://static.wikia.nocookie.net/id5/images/2/2b/LazyMrBunny.png/revision/latest/scale-to-width-down/150?cb=20210901123600" alt="Ленивый Мр Кролик">
+    <span class="skin-name">Ленивый Мр Кролик</span>
+    <span class="skin-tags">Сфера, Всегда доступный, Синий, Домашние наряды, A-качество</span>
+</div>
+<div class="skin rarity-b" data-tags="essence permanent B-tier">
+    <img src="https://static.wikia.nocookie.net/id5/images/3/3a/Barber.png/revision/latest/scale-to-width-down/150?cb=20250926133734" alt="Барбер">
+    <span class="skin-name">Барбер</span>
+    <span class="skin-tags">Сфера, Всегда доступный, B-качество</span>
+</div>
+    <div class="skin rarity-s" data-tags="shop-frag anniversary time-limited white S-tier">
+        <img src="https://static.wikia.nocookie.net/id5/images/f/f8/LadyBella.png/revision/latest?cb=20230522182202" alt="Леди Белла">
+        <span class="skin-name">Леди Белла</span>
+        <span class="skin-tags">Магазин (фрагменты), Годовщина, Временно-лимитный, Белый, S-качество</span>
+    </div>
+
 </div>
 
 <script>
@@ -221,3 +290,5 @@
 
 </body>
 </html>
+
+
